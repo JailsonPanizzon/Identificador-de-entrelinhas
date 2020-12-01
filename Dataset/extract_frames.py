@@ -1,15 +1,16 @@
 import cv2
 import os
 import glob
-folder = "manha"
+folder = "tarde1"
 VIDEO_PATHS =  os.path.abspath(os.path.join('.', "Videos/"+folder))
 
 VIDEO_PATHS_all = glob.glob(os.path.join(VIDEO_PATHS, "*.*"))
 print(VIDEO_PATHS)
 print(VIDEO_PATHS_all)
-#"manha"
-cont = 0
-#"tarde1"
+#"manha" MP5
+#cont = 0 - 533
+#"tarde1" mp4
+cont = 534 
 #"tarde2"
 #"tarde3" 
 
