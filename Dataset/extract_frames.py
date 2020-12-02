@@ -1,7 +1,7 @@
 import cv2
 import os
 import glob
-folder = "tarde1"
+folder = "tarde3"
 VIDEO_PATHS =  os.path.abspath(os.path.join('.', "Videos/"+folder))
 
 VIDEO_PATHS_all = glob.glob(os.path.join(VIDEO_PATHS, "*.*"))
@@ -10,10 +10,11 @@ print(VIDEO_PATHS_all)
 #"manha" MP5
 #cont = 0 - 533
 #"tarde1" mp4
-cont = 534 
-#"tarde2"
-#"tarde3" 
-
+#cont = 534 -817
+#"tarde2" mp4 
+# cont = 818 - 1524
+#"tarde3" mp4
+cont = 1525
 def extract_images():
     local_cont = cont
     cont2 = 0
