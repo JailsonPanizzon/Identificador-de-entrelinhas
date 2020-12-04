@@ -1,1 +1,377 @@
-{"_via_settings":{"ui":{"annotation_editor_height":25,"annotation_editor_fontsize":0.8,"leftsidebar_width":18,"image_grid":{"img_height":80,"rshape_fill":"none","rshape_fill_opacity":0.3,"rshape_stroke":"yellow","rshape_stroke_width":2,"show_region_shape":true,"show_image_policy":"all"},"image":{"region_label":"__via_region_id__","region_color":"__via_default_region_color__","region_label_font":"10px Sans","on_image_annotation_editor_placement":"NEAR_REGION"}},"core":{"buffer_size":18,"filepath":{},"default_filepath":""},"project":{"name":"via_project_2Dec2020_10h58m"}},"_via_img_metadata":{"adutta_swan.jpg-1":{"filename":"adutta_swan.jpg","size":-1,"regions":[{"shape_attributes":{"name":"polygon","all_points_x":[116,94,176,343,383,385,369,406,398,364,310,297,304,244,158],"all_points_y":[157,195,264,273,261,234,222,216,155,124,135,170,188,170,175]},"region_attributes":{"name":"Swan","type":"bird","image_quality":{"good_illumination":true}}}],"file_attributes":{"caption":"Swan in lake Geneve","public_domain":"no","image_url":"http://www.robots.ox.ac.uk/~vgg/software/via/images/swan.jpg"}},"wikimedia_death_of_socrates.jpg-1":{"filename":"wikimedia_death_of_socrates.jpg","size":-1,"regions":[{"shape_attributes":{"name":"rect","x":174,"y":139,"width":108,"height":227},"region_attributes":{"name":"Plato","type":"human","image_quality":{"good_illumination":true}}},{"shape_attributes":{"name":"rect","x":347,"y":114,"width":91,"height":209},"region_attributes":{"name":"Socrates","type":"human","image_quality":{"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"ellipse","cx":316,"cy":180,"rx":17,"ry":12},"region_attributes":{"name":"Hemlock","type":"cup"}}],"file_attributes":{"caption":"The Death of Socrates by David","public_domain":"yes","image_url":"https://en.wikipedia.org/wiki/The_Death_of_Socrates#/media/File:David_-_The_Death_of_Socrates.jpg"}},"1524.png319837":{"filename":"1524.png","size":319837,"regions":[{"shape_attributes":{"name":"polygon","all_points_x":[218,247,307,250,231],"all_points_y":[10,261,264,39,1]},"region_attributes":{"name":"1","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[245,275,346,305],"all_points_y":[6,19,267,263]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[185,182,233,210],"all_points_y":[2,259,261,6]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}}],"file_attributes":{"caption":"","public_domain":"no","image_url":""}},"1523.png348024":{"filename":"1523.png","size":348024,"regions":[{"shape_attributes":{"name":"polygon","all_points_x":[233,291,322,266],"all_points_y":[10,207,164,3]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[221,222,302,240],"all_points_y":[12,254,265,14]},"region_attributes":{"name":"1","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[198,153,210,218],"all_points_y":[20,256,261,5]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[179,104,152,201],"all_points_y":[21,263,263,18]},"region_attributes":{"name":"1","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[138,10,85,175],"all_points_y":[35,255,266,14]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}}],"file_attributes":{"caption":"","public_domain":"no","image_url":""}},"1522.png347615":{"filename":"1522.png","size":347615,"regions":[{"shape_attributes":{"name":"polygon","all_points_x":[245,272,313,282],"all_points_y":[11,19,148,159]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[221,226,289,245],"all_points_y":[18,261,261,13]},"region_attributes":{"name":"1","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[197,158,226,218],"all_points_y":[16,268,259,6]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[173,106,158,196],"all_points_y":[22,267,259,6]},"region_attributes":{"name":"1","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}},{"shape_attributes":{"name":"polygon","all_points_x":[143,11,1,96,170],"all_points_y":[21,246,270,265,14]},"region_attributes":{"name":"2","type":"unknown","image_quality":{"good":true,"frontal":true,"good_illumination":true}}}],"file_attributes":{"caption":"","public_domain":"no","image_url":""}}},"_via_attributes":{"region":{"name":{"type":"dropdown","description":"Name of the object","options":{"1":"Entrelinha","2":"Linha"},"default_options":{}},"type":{"type":"dropdown","description":"Category of object","options":{"bird":"Bird","human":"Human","cup":"Cup (object)","unknown":"Unknown (object)"},"default_options":{"unknown":true}},"image_quality":{"type":"checkbox","description":"Quality of image region","options":{"blur":"Blurred region","good_illumination":"Good Illumination","frontal":"Object in Frontal View"},"default_options":{"good":true,"frontal":true,"good_illumination":true}}},"file":{"caption":{"type":"text","description":"","default_value":""},"public_domain":{"type":"radio","description":"","options":{"yes":"Yes","no":"No"},"default_options":{"no":true}},"image_url":{"type":"text","description":"","default_value":""}}},"_via_data_format_version":"2.0.10","_via_image_id_list":["adutta_swan.jpg-1","wikimedia_death_of_socrates.jpg-1","1524.png319837","1523.png348024","1522.png347615"]}
+{
+    "1524.png319837": {
+        "filename": "1524.png",
+        "size": 319837,
+        "regions": [
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        218,
+                        247,
+                        307,
+                        250,
+                        231
+                    ],
+                    "all_points_y": [
+                        10,
+                        261,
+                        264,
+                        39,
+                        1
+                    ]
+                },
+                "region_attributes": {
+                    "name": "1",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        245,
+                        275,
+                        346,
+                        305
+                    ],
+                    "all_points_y": [
+                        6,
+                        19,
+                        267,
+                        263
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        185,
+                        182,
+                        233,
+                        210
+                    ],
+                    "all_points_y": [
+                        2,
+                        259,
+                        261,
+                        6
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            }
+        ],
+        "file_attributes": {
+            "caption": "",
+            "public_domain": "no",
+            "image_url": ""
+        }
+    },
+    "1523.png348024": {
+        "filename": "1523.png",
+        "size": 348024,
+        "regions": [
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        233,
+                        291,
+                        322,
+                        266
+                    ],
+                    "all_points_y": [
+                        10,
+                        207,
+                        164,
+                        3
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        221,
+                        222,
+                        302,
+                        240
+                    ],
+                    "all_points_y": [
+                        12,
+                        254,
+                        265,
+                        14
+                    ]
+                },
+                "region_attributes": {
+                    "name": "1",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        198,
+                        153,
+                        210,
+                        218
+                    ],
+                    "all_points_y": [
+                        20,
+                        256,
+                        261,
+                        5
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        179,
+                        104,
+                        152,
+                        201
+                    ],
+                    "all_points_y": [
+                        21,
+                        263,
+                        263,
+                        18
+                    ]
+                },
+                "region_attributes": {
+                    "name": "1",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        138,
+                        10,
+                        85,
+                        175
+                    ],
+                    "all_points_y": [
+                        35,
+                        255,
+                        266,
+                        14
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            }
+        ],
+        "file_attributes": {
+            "caption": "",
+            "public_domain": "no",
+            "image_url": ""
+        }
+    },
+    "1522.png347615": {
+        "filename": "1522.png",
+        "size": 347615,
+        "regions": [
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        245,
+                        272,
+                        313,
+                        282
+                    ],
+                    "all_points_y": [
+                        11,
+                        19,
+                        148,
+                        159
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        221,
+                        226,
+                        289,
+                        245
+                    ],
+                    "all_points_y": [
+                        18,
+                        261,
+                        261,
+                        13
+                    ]
+                },
+                "region_attributes": {
+                    "name": "1",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        197,
+                        158,
+                        226,
+                        218
+                    ],
+                    "all_points_y": [
+                        16,
+                        268,
+                        259,
+                        6
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        173,
+                        106,
+                        158,
+                        196
+                    ],
+                    "all_points_y": [
+                        22,
+                        267,
+                        259,
+                        6
+                    ]
+                },
+                "region_attributes": {
+                    "name": "1",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polygon",
+                    "all_points_x": [
+                        143,
+                        11,
+                        1,
+                        96,
+                        170
+                    ],
+                    "all_points_y": [
+                        21,
+                        246,
+                        270,
+                        265,
+                        14
+                    ]
+                },
+                "region_attributes": {
+                    "name": "2",
+                    "type": "unknown",
+                    "image_quality": {
+                        "good": true,
+                        "frontal": true,
+                        "good_illumination": true
+                    }
+                }
+            }
+        ],
+        "file_attributes": {
+            "caption": "",
+            "public_domain": "no",
+            "image_url": ""
+        }
+    }
+}
