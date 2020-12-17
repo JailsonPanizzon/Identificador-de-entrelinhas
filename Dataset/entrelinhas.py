@@ -42,7 +42,7 @@ COCO_WEIGHTS_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 
 # Directory to save logs and model checkpoints, if not provided
 # through the command line argument --logs
-DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
+DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "main/logs")
 
 ############################################################
 #  Configurations
@@ -64,7 +64,7 @@ class CustomConfig(Config):
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 50
+    STEPS_PER_EPOCH = 5
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
@@ -200,11 +200,11 @@ def train(model):
     # Since we're using a very small dataset, and starting from
     # COCO trained weights, we don't need to train too long. Also,
     # no need to train all layers, just the heads should do it.
-    print("Training network heads")
+    print("Training network")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
                 epochs=3,
-                layers='heads')
+                layers='all')
 
 
 def color_splash(image, mask):
@@ -327,7 +327,7 @@ if __name__ == '__main__':
             # Set batch size to 1 since we'll be running inference on
             # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
             GPU_COUNT = 1
-            IMAGES_PER_GPU = 1
+            IMAGES_PER_GPU = 2
         config = InferenceConfig()
     config.display()
 
