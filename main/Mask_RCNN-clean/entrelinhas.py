@@ -66,7 +66,7 @@ class RowConfig(Config):
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 784
+    STEPS_PER_EPOCH = 8
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
@@ -74,9 +74,9 @@ class RowConfig(Config):
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 1
 
-    BATCH_SIZE = 10
+    BATCH_SIZE = 100
 
-    GPU_COUNT = 2
+    GPU_COUNT = 1
 
 
 
@@ -92,8 +92,8 @@ class RowDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("entrelinha", 1, "1")
-        self.add_class("linha", 2, "2")
+        self.add_class("object", 1, "1")
+        self.add_class("object", 2, "2")
 
 
         # Train or validation dataset?
