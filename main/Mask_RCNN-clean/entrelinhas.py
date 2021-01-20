@@ -215,7 +215,7 @@ def train(model):
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=2,
+                epochs=10,
                 layers='all')
     print("--- %s seconds ---" % (time.time() - start_time))
 
