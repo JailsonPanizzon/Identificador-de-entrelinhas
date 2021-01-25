@@ -330,6 +330,72 @@ def random_colors(N):
   colors = [tuple(255 * np.random.rand(3)) for _ in range(N)]
   return colors
 
+############################################################
+#  Evaluate
+############################################################
+
+def evaluate(infer_model):
+
+    model_path = infer_model.find_last()
+
+    # Load trained weights
+    print("Loading weights from ", model_path)
+    infer_model.load_weights(model_path, by_name=True)
+
+
+    # Test on a random image
+    image_id = np.random.choice(dataset_val.image_ids)
+    original_image, image_meta, gt_class_id, gt_bbox, gt_mask =\
+        modellib.load_image_gt(dataset_val, inference_config, 
+                            image_id, use_mini_mask=False)
+
+    log("original_image", original_image)
+    log("image_meta", image_meta)
+    log("gt_class_id", gt_class_id)
+    log("gt_bbox", gt_bbox)
+    log("gt_mask", gt_mask)
+
+    visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id, 
+                                dataset_train.class_names, figsize=(8, 8))
+
+    results = infer_model.detect([original_image], verbose=1)
+
+    r = results[0]
+    visualize.display_instances(original_image, r['rois'], r['masks'], r['class_ids'], 
+                                dataset_val.class_names, r['scores'])
+
+    # Compute VOC-Style mean Average Precision @ IoU=0.5
+    # Running on a few images. Increase for better accuracy.
+    image_ids = np.random.choice(dataset_val.image_ids, 20)
+    APs = []
+    inference_start = time.time()
+    for image_id in image_ids:
+        # Load image and ground truth data
+        image, image_meta, gt_class_id, gt_bbox, gt_mask =\
+            modellib.load_image_gt(dataset_val, inference_config,
+                                image_id, use_mini_mask=False)
+        molded_images = np.expand_dims(modellib.mold_image(image, inference_config), 0)
+        # Run object detection
+        results = infer_model.detect([image], verbose=1)
+        r = results[0]
+        visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
+                                dataset_val.class_names, r['scores'])
+
+        # Compute AP
+        AP, precisions, recalls, overlaps =\
+            utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
+                            r["rois"], r["class_ids"], r["scores"], r['masks'])
+        APs.append(AP)
+
+    inference_end = time.time()
+    print('Inference Time: %0.2f Minutes'%((inference_end - inference_start)/60))
+    print("mAP: ", np.mean(APs))
+
+############################################################
+#  End - Evaluate
+############################################################
+
+
 if __name__ == '__main__':
     import argparse
 
@@ -420,6 +486,8 @@ if __name__ == '__main__':
     elif args.command == "splash":
         detect_and_color_splash(model, image_path=args.image,
                                 video_path=args.video)
+    elif  args.command == "evaluate":
+        evaluate(model)
     else:
         print("'{}' is not recognized. "
-              "Use 'train' or 'splash'".format(args.command))
+              "Use 'train', 'evaluate' or 'splash'".format(args.command))
