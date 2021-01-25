@@ -28,6 +28,7 @@ import skimage.draw
 import cv2
 #from mrcnn.visualize import display_instances
 from mrcnn.visualize import apply_mask
+from mrcnn import visualize
 import matplotlib.pyplot as plt
 import time
 
@@ -341,6 +342,10 @@ def evaluate(infer_model):
     # Load trained weights
     print("Loading weights from ", model_path)
     infer_model.load_weights(model_path, by_name=True)
+
+    dataset_train = RowDataset()
+    dataset_train.load_row(args.dataset, "train")
+    dataset_train.prepare()
 
     dataset_val = RowDataset()
     dataset_val.load_row(args.dataset, "val")
