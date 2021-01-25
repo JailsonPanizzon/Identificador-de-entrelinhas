@@ -349,7 +349,7 @@ def evaluate(infer_model):
     # Test on a random image
     image_id = np.random.choice(dataset_val.image_ids)
     original_image, image_meta, gt_class_id, gt_bbox, gt_mask =\
-        modellib.load_image_gt(dataset_val, inference_config, 
+        modellib.load_image_gt(dataset_val, infer_model.config, 
                             image_id, use_mini_mask=False)
 
     log("original_image", original_image)
@@ -375,9 +375,9 @@ def evaluate(infer_model):
     for image_id in image_ids:
         # Load image and ground truth data
         image, image_meta, gt_class_id, gt_bbox, gt_mask =\
-            modellib.load_image_gt(dataset_val, inference_config,
+            modellib.load_image_gt(dataset_val, infer_model.config,
                                 image_id, use_mini_mask=False)
-        molded_images = np.expand_dims(modellib.mold_image(image, inference_config), 0)
+        molded_images = np.expand_dims(modellib.mold_image(image, infer_model.config), 0)
         # Run object detection
         results = infer_model.detect([image], verbose=1)
         r = results[0]
