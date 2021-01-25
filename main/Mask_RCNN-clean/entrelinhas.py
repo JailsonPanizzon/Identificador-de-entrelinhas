@@ -342,6 +342,9 @@ def evaluate(infer_model):
     print("Loading weights from ", model_path)
     infer_model.load_weights(model_path, by_name=True)
 
+    dataset_val = RowDataset()
+    dataset_val.load_row(args.dataset, "val")
+    dataset_val.prepare()
 
     # Test on a random image
     image_id = np.random.choice(dataset_val.image_ids)
@@ -462,7 +465,7 @@ if __name__ == '__main__':
             utils.download_trained_weights(weights_path)
     elif args.weights.lower() == "last":
         # Find last trained weights
-        weights_path = model.find_last()[1]
+        weights_path = model.find_last()
     elif args.weights.lower() == "imagenet":
         # Start from ImageNet trained weights
         weights_path = model.get_imagenet_weights()
