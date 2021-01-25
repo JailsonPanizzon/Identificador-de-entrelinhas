@@ -70,7 +70,7 @@ class RowConfig(Config):
     STEPS_PER_EPOCH = 8
 
     # Skip detections with < 90% confidence
-    DETECTION_MIN_CONFIDENCE = 0.9
+    DETECTION_MIN_CONFIDENCE = 0.7
 
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 1
@@ -357,19 +357,14 @@ def evaluate(infer_model):
         modellib.load_image_gt(dataset_val, infer_model.config, 
                             image_id, use_mini_mask=False)
 
-    log("original_image", original_image)
-    log("image_meta", image_meta)
-    log("gt_class_id", gt_class_id)
-    log("gt_bbox", gt_bbox)
-    log("gt_mask", gt_mask)
+    image = skimage.io.imread(dataset_val.image_reference(image_id))
 
-    visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id, 
+    visualize.display_instances(image, gt_bbox, gt_mask, gt_class_id, 
                                 dataset_train.class_names, figsize=(8, 8))
-
-    results = infer_model.detect([original_image], verbose=1)
-
+    print(dataset_val.image_reference(image_id))
+    results = infer_model.detect([image], verbose=1)
     r = results[0]
-    visualize.display_instances(original_image, r['rois'], r['masks'], r['class_ids'], 
+    visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
                                 dataset_val.class_names, r['scores'])
 
     # Compute VOC-Style mean Average Precision @ IoU=0.5
@@ -382,11 +377,13 @@ def evaluate(infer_model):
         image, image_meta, gt_class_id, gt_bbox, gt_mask =\
             modellib.load_image_gt(dataset_val, infer_model.config,
                                 image_id, use_mini_mask=False)
-        molded_images = np.expand_dims(modellib.mold_image(image, infer_model.config), 0)
+        image2 = skimage.io.imread(dataset_val.image_reference(image_id))
+
+        molded_images = np.expand_dims(modellib.mold_image(image2, infer_model.config), 0)
         # Run object detection
-        results = infer_model.detect([image], verbose=1)
+        results = infer_model.detect([image2], verbose=1)
         r = results[0]
-        visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
+        visualize.display_instances(image2, r['rois'], r['masks'], r['class_ids'], 
                                 dataset_val.class_names, r['scores'])
 
         # Compute AP
