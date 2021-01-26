@@ -74,7 +74,7 @@ class RowConfig(Config):
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 1
 
-    BATCH_SIZE = 100
+    BATCH_SIZE = 200
 
     GPU_COUNT = 1
 
