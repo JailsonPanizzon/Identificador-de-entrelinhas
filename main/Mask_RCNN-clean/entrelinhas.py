@@ -131,7 +131,6 @@ class RowDataset(utils.Dataset):
             # shape_attributes (see json format above)
             polygons = [r['shape_attributes'] for r in a['regions']] 
             objects = [s['region_attributes']['name'] for s in a['regions']]
-            print("objects:",objects)
             name_dict = {"1": 1,"2": 2}
             # key = tuple(name_dict)
             num_ids = [name_dict[a] for a in objects]
@@ -140,7 +139,6 @@ class RowDataset(utils.Dataset):
             # load_mask() needs the image size to convert polygons to masks.
             # Unfortunately, VIA doesn't include it in JSON, so we must read
             # the image. This is only managable since the dataset is tiny.
-            print("numids",num_ids)
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
@@ -215,7 +213,7 @@ def train(model):
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=10,
+                epochs=20,
                 layers='all')
     print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -396,7 +394,7 @@ if __name__ == '__main__':
             utils.download_trained_weights(weights_path)
     elif args.weights.lower() == "last":
         # Find last trained weights
-        weights_path = model.find_last()[1]
+        weights_path = model.find_last()
     elif args.weights.lower() == "imagenet":
         # Start from ImageNet trained weights
         weights_path = model.get_imagenet_weights()
