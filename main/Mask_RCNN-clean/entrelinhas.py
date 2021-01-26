@@ -78,7 +78,7 @@ class RowConfig(Config):
 
     IMAGE_MAX_DIM = 512
 
-    IMAGE_RESIZE_MODE = none
+    IMAGE_RESIZE_MODE = "none"
 
 
 ############################################################
