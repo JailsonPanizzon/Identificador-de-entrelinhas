@@ -1,3 +1,9 @@
 Dataset/Videos
 mask_rcnn_coco.h5
 env_train/
+main/Mask_RCNN-clean/mrcnn/__pycache__/__init__.cpython-36.pyc
+main/Mask_RCNN-clean/mrcnn/__pycache__/config.cpython-36.pyc
+main/Mask_RCNN-clean/mrcnn/__pycache__/visualize.cpython-36.pyc
+main/Mask_RCNN-clean/mrcnn/__pycache__/utils.cpython-36.pyc
+main/Mask_RCNN-clean/mrcnn/__pycache__/model.cpython-36.pyc
+main/Mask_RCNN-clean/mrcnn/__pycache__/*
