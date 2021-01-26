@@ -66,18 +66,17 @@ class RowConfig(Config):
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 6
+    STEPS_PER_EPOCH = 784
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 1
+    
+    IMAGE_MIN_DIM = 300
 
-    BATCH_SIZE = 200
-
-    GPU_COUNT = 1
-
+    IMAGE_MAX_DIM = 500
 
 
 ############################################################
@@ -92,8 +91,8 @@ class RowDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("object", 1, "1")
-        self.add_class("object", 2, "2")
+        self.add_class("entrelinha", 1, "1")
+        self.add_class("linha", 2, "2")
 
 
         # Train or validation dataset?
@@ -131,6 +130,7 @@ class RowDataset(utils.Dataset):
             # shape_attributes (see json format above)
             polygons = [r['shape_attributes'] for r in a['regions']] 
             objects = [s['region_attributes']['name'] for s in a['regions']]
+            print("objects:",objects)
             name_dict = {"1": 1,"2": 2}
             # key = tuple(name_dict)
             num_ids = [name_dict[a] for a in objects]
@@ -139,6 +139,7 @@ class RowDataset(utils.Dataset):
             # load_mask() needs the image size to convert polygons to masks.
             # Unfortunately, VIA doesn't include it in JSON, so we must read
             # the image. This is only managable since the dataset is tiny.
+            print("numids",num_ids)
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
@@ -213,7 +214,7 @@ def train(model):
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=20,
+                epochs=1,
                 layers='all')
     print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -394,7 +395,7 @@ if __name__ == '__main__':
             utils.download_trained_weights(weights_path)
     elif args.weights.lower() == "last":
         # Find last trained weights
-        weights_path = model.find_last()
+        weights_path = model.find_last()[1]
     elif args.weights.lower() == "imagenet":
         # Start from ImageNet trained weights
         weights_path = model.get_imagenet_weights()
