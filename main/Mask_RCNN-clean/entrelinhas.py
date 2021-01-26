@@ -74,7 +74,7 @@ class RowConfig(Config):
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 117
 
-    IMAGE_MIN_DIM = 512
+    IMAGE_MIN_DIM = 400
 
     IMAGE_MAX_DIM = 512
 
