@@ -60,25 +60,26 @@ class RowConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 1
+    IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 784
+    STEPS_PER_EPOCH = 274
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of validation steps to run at the end of every training epoch.
-    VALIDATION_STEPS = 1
-    
+    VALIDATION_STEPS = 117
+
     IMAGE_MIN_DIM = 320
 
     IMAGE_MAX_DIM = 512
 
     IMAGE_RESIZE_MODE = "none"
+
 
 
 ############################################################
@@ -93,8 +94,8 @@ class RowDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("entrelinha", 1, "1")
-        self.add_class("linha", 2, "2")
+        self.add_class("object", 1, "1")
+        self.add_class("object", 2, "2")
 
 
         # Train or validation dataset?
@@ -216,7 +217,7 @@ def train(model):
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=1,
+                epochs=10,
                 layers='all')
     print("--- %s seconds ---" % (time.time() - start_time))
 
