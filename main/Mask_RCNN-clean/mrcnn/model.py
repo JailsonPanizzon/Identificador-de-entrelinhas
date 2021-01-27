@@ -22,6 +22,7 @@ import keras.backend as K
 import keras.layers as KL
 import keras.engine as KE
 import keras.models as KM
+from keras.utils.vis_utils import plot_model
 
 from mrcnn import utils
 
@@ -2060,6 +2061,7 @@ class MaskRCNN():
         if config.GPU_COUNT > 1:
             from mrcnn.parallel_model import ParallelModel
             model = ParallelModel(model, config.GPU_COUNT)
+        plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
         return model
 
