@@ -100,7 +100,6 @@ class RowDataset(utils.Dataset):
         # Train or validation dataset?
         assert subset in ["train", "val"]
         dataset_dir = os.path.join(dataset_dir, subset)
-
         # Load annotations
         # VGG Image Annotator saves each image in the form:
         # { 'filename': '28503151_5b5b7ec140_b.jpg',
@@ -132,7 +131,6 @@ class RowDataset(utils.Dataset):
             # shape_attributes (see json format above)
             polygons = [r['shape_attributes'] for r in a['regions']] 
             objects = [s['region_attributes']['name'] for s in a['regions']]
-            print("objects:",objects)
             name_dict = {"1": 1,"2": 2}
             # key = tuple(name_dict)
             num_ids = [name_dict[a] for a in objects]
@@ -141,7 +139,6 @@ class RowDataset(utils.Dataset):
             # load_mask() needs the image size to convert polygons to masks.
             # Unfortunately, VIA doesn't include it in JSON, so we must read
             # the image. This is only managable since the dataset is tiny.
-            print("numids",num_ids)
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
@@ -357,14 +354,12 @@ def evaluate(infer_model):
         modellib.load_image_gt(dataset_val, infer_model.config, 
                             image_id, use_mini_mask=False)
 
-    image = skimage.io.imread(dataset_val.image_reference(image_id))
-
-    visualize.display_instances(image, gt_bbox, gt_mask, gt_class_id, 
+    visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id, 
                                 dataset_train.class_names, figsize=(8, 8))
     print(dataset_val.image_reference(image_id))
-    results = infer_model.detect([image], verbose=1)
+    results = infer_model.detect([original_image], verbose=1)
     r = results[0]
-    visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
+    visualize.display_instances(original_image, r['rois'], r['masks'], r['class_ids'], 
                                 dataset_val.class_names, r['scores'])
 
     # Compute VOC-Style mean Average Precision @ IoU=0.5
@@ -377,25 +372,43 @@ def evaluate(infer_model):
         image, image_meta, gt_class_id, gt_bbox, gt_mask =\
             modellib.load_image_gt(dataset_val, infer_model.config,
                                 image_id, use_mini_mask=False)
-        image2 = skimage.io.imread(dataset_val.image_reference(image_id))
 
-        molded_images = np.expand_dims(modellib.mold_image(image2, infer_model.config), 0)
+        molded_images = np.expand_dims(modellib.mold_image(image, infer_model.config), 0)
         # Run object detection
-        results = infer_model.detect([image2], verbose=1)
+        results = infer_model.detect([image], verbose=1)
         r = results[0]
-        visualize.display_instances(image2, r['rois'], r['masks'], r['class_ids'], 
+        visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], 
                                 dataset_val.class_names, r['scores'])
 
         # Compute AP
         AP, precisions, recalls, overlaps =\
             utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
                             r["rois"], r["class_ids"], r["scores"], r['masks'])
+        AP_range = utils.compute_ap_range(gt_bbox,gt_class_id,gt_mask,r["rois"],r["class_ids"],, r["scores"], r['masks'])
         APs.append(AP)
+        for prec in precisions:
+            precision.append(prec)
+        for rec in recalls:
+            recall.append(rec)
+        print("-------------Precision-------------")
+        print("All: ", precisions)
+        print("MEAN: ", np.mean(precisions))
+        print("-------------Recall-------------")
+        print("All: ", recalls)
+        print("MEAN: ", np.mean(recalls))
+        print("-------------AP-------------")
+        print("AP: ", AP)
+        print("AP_Range:" AP_range)
+        
 
     inference_end = time.time()
     print('Inference Time: %0.2f Minutes'%((inference_end - inference_start)/60))
+    print("\n-------------AP-------------")
     print("mAP: ", np.mean(APs))
-
+    print("\n-------------Recall-------------")
+    print("recall: ", np.mean(recall))
+    print("\n-------------Precision-------------")
+    print("precision: ", np.mean(precision))
 ############################################################
 #  End - Evaluate
 ############################################################
