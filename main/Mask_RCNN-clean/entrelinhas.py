@@ -60,23 +60,24 @@ class RowConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 1
+    IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 6
+    STEPS_PER_EPOCH = 274
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of validation steps to run at the end of every training epoch.
-    VALIDATION_STEPS = 1
+    VALIDATION_STEPS = 117
 
-    BATCH_SIZE = 100
+    IMAGE_MIN_DIM = 320
 
-    GPU_COUNT = 1
+    IMAGE_MAX_DIM = 512
+
 
 
 
@@ -131,7 +132,6 @@ class RowDataset(utils.Dataset):
             # shape_attributes (see json format above)
             polygons = [r['shape_attributes'] for r in a['regions']] 
             objects = [s['region_attributes']['name'] for s in a['regions']]
-            print("objects:",objects)
             name_dict = {"1": 1,"2": 2}
             # key = tuple(name_dict)
             num_ids = [name_dict[a] for a in objects]
@@ -140,7 +140,6 @@ class RowDataset(utils.Dataset):
             # load_mask() needs the image size to convert polygons to masks.
             # Unfortunately, VIA doesn't include it in JSON, so we must read
             # the image. This is only managable since the dataset is tiny.
-            print("numids",num_ids)
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
