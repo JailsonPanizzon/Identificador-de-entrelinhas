@@ -60,23 +60,25 @@ class RowConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 1
+    IMAGES_PER_GPU = 3
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 2  # Background + toy
+    NUM_CLASSES = 1 + 2 
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 784
+    STEPS_PER_EPOCH = 183
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of validation steps to run at the end of every training epoch.
-    VALIDATION_STEPS = 1
+    VALIDATION_STEPS = 79
 
-    BATCH_SIZE = 10
+    IMAGE_MIN_DIM = 320
 
-    GPU_COUNT = 2
+    IMAGE_MAX_DIM = 512
+
+    USE_MINI_MASK= False
 
 
 
@@ -115,7 +117,7 @@ class RowDataset(utils.Dataset):
         #   'size': 100202
         # }
         # We mostly care about the x and y coordinates of each region
-        annotations1 = json.load(open(os.path.join(dataset_dir, "DatasetEntrelinhas-Treinamento.json")))
+        annotations1 = json.load(open(os.path.join(dataset_dir, "DatasetEntrelinhas - Revisado.json")))
         # print(annotations1)
         annotations = list(annotations1.values())  # don't need the dict keys
 
