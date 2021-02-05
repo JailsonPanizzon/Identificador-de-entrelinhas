@@ -213,13 +213,14 @@ def train(model):
     # COCO trained weights, we don't need to train too long. Also,
     # no need to train all layers, just the heads should do it.
     with open("tempo.json", "r") as data:
-        tempo = data
+        tempo = json.load(data)
     print("Training network")
     start_time = time.time()
     print("--- %s seconds ---" % (time.time() - start_time))
+    print("--- %s seconds armazenados ---" %tempo["tempo"])
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=config.EPOCHS,
+                epochs=20,
                 layers='all')
     tempo_atual_interacao =  time.time() - start_time
     tempo["tempo"] = tempo_atual_interacao + tempo["tempo"]
