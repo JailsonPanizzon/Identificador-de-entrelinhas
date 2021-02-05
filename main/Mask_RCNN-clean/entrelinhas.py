@@ -211,14 +211,22 @@ def train(model):
     # Since we're using a very small dataset, and starting from
     # COCO trained weights, we don't need to train too long. Also,
     # no need to train all layers, just the heads should do it.
+    with open("tempo.json", "r") as data:
+        tempo = data
     print("Training network")
     start_time = time.time()
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=20,
+                epochs=1,
                 layers='all')
-    print("--- %s seconds ---" % (time.time() - start_time))
+    tempo_atual_interacao =  time.time() - start_time
+    tempo["tempo"] = tempo_atual_interacao + tempo["tempo"]
+    print("--- Tempo desta interação -> %s" %tempo_atual_interacao)
+    print("--- Tempo total -> %s" %tempo["tempo"])
+    with open("tempo.json", "w") as output:
+        json.dump(tempo, output)
+
 
 
 def color_splash(image, mask):
