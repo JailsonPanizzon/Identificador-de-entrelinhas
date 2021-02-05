@@ -80,6 +80,7 @@ class RowConfig(Config):
 
     USE_MINI_MASK= False
 
+    EPOCHS = 1
 
 
 
@@ -218,7 +219,7 @@ def train(model):
     print("--- %s seconds ---" % (time.time() - start_time))
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=1,
+                epochs=config.EPOCHS,
                 layers='all')
     tempo_atual_interacao =  time.time() - start_time
     tempo["tempo"] = tempo_atual_interacao + tempo["tempo"]
