@@ -60,19 +60,19 @@ class RowConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 3
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 2  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 374
+    STEPS_PER_EPOCH = 183
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of validation steps to run at the end of every training epoch.
-    VALIDATION_STEPS = 168
+    VALIDATION_STEPS = 79
 
     IMAGE_MIN_DIM = 320
 
@@ -101,7 +101,7 @@ class RowDataset(utils.Dataset):
 
 
         # Train or validation dataset?
-        assert subset in ["train", "evaluation"]
+        assert subset in ["train", "val"]
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Load annotations
@@ -119,7 +119,7 @@ class RowDataset(utils.Dataset):
         #   'size': 100202
         # }
         # We mostly care about the x and y coordinates of each region
-        annotations1 = json.load(open(os.path.join(dataset_dir, "DatasetEntrelinhas-Treinamento.json")))
+        annotations1 = json.load(open(os.path.join(dataset_dir, "DatasetEntrelinhas - Revisado.json")))
         # print(annotations1)
         annotations = list(annotations1.values())  # don't need the dict keys
 
@@ -220,7 +220,7 @@ def train(model):
     print("--- %s seconds armazenados ---" %tempo["tempo"])
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=35,
+                epochs=20,
                 layers='all')
     tempo_atual_interacao =  time.time() - start_time
     tempo["tempo"] = tempo_atual_interacao + tempo["tempo"]
